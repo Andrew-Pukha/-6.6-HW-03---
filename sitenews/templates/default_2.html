@@ -1,0 +1,22 @@
+{% load static %}    <!-- #15. Тэг, подключающий статические файлы. -->
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link type="text/css" href="{% static 'neapp/css/styles.css' %}" rel="stylesheet" />   <!-- #15. Статика -->
+</head>
+<body>
+
+<!-- #13. Главное меню сайта (кликабельное). -->
+<ul>
+    <li><a href="{% url 'home' %}">Главная страница</a></li>
+    {% for m in menu %}
+    {% if not forloop.last %}<li>{% else %}<li class="last">{% endif %}
+         <a href="{% url m.url_name %}">{{m.title}}</a>
+    </li>
+    {% endfor %}
+</ul>
+<!-- #13. Главное меню сайта -->
+
+{% block content %} {% endblock %}
